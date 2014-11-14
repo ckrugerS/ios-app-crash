@@ -1,15 +1,18 @@
-//
-//  LocationLogger.pch
-//  LoctionLogger
-//
-//  Created by Cornelis Kruger on 2014/11/14.
-//  Copyright (c) 2014 private. All rights reserved.
-//
+#import <Availability.h>
 
-#ifndef LoctionLogger_LocationLogger_pch
-#define LoctionLogger_LocationLogger_pch
+#ifndef __IPHONE_4_0
+#warning "This project uses features only available in iOS SDK 4.0 and later."
+#endif
 
-// Include any system framework and library headers here that should be included in all compilation units.
-// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
+#import "DDLog.h"
+#endif
+
+#ifdef DEBUG
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+#else
+static const int ddLogLevel = LOG_LEVEL_ERROR;
 #endif

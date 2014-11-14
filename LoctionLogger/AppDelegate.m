@@ -7,6 +7,11 @@
 //
 
 #import "AppDelegate.h"
+#import "DDLog.h"
+#import "DDASLLogger.h"
+#import "DDTTYLogger.h"
+#import "DDFileLogger.h"
+#import "BackgroundProcessor.h"
 
 @interface AppDelegate ()
 
@@ -14,9 +19,15 @@
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    [DDLog addLogger:[DDASLLogger sharedInstance]];
+    [DDLog addLogger:[DDTTYLogger sharedInstance]];
+    
+
+    [[DDTTYLogger sharedInstance] setColorsEnabled:YES];
+    
     return YES;
 }
 
@@ -36,6 +47,8 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    BackgroundProcessor *bProcessor = [[BackgroundProcessor alloc] init];
+    [bProcessor runAsync];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

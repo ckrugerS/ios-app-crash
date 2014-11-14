@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface BackgroundProcessor : NSObject
-
+- (void)runAsync;
 @end
